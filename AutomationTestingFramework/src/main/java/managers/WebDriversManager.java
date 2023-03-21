@@ -2,7 +2,9 @@ package managers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class WebDriversManager {
 
@@ -17,7 +19,9 @@ public class WebDriversManager {
         switch (webDriverType){
             case 1:
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                driver = new ChromeDriver(options);
                 break;
             case 2:
                 System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
